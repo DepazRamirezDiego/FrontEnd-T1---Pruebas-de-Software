@@ -9,48 +9,85 @@
 <main>
   <section class="form-section">
     <h2>Crear Equipo</h2>
-    <form [formGroup]="equipoForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="formularioEquipo">
       <label for="codEquipo">Código de Equipo</label>
       <input
         type="text"
         id="codEquipo"
         formControlName="cod_equipo"
+        [(ngModel)]="objEquipo.cod_equipo"
         maxlength="6"
         placeholder="Ingrese código del equipo"
         required
       />
-      <div *ngIf="equipoForm.get('cod_equipo')?.invalid && equipoForm.get('cod_equipo')?.touched">
-        <small *ngIf="equipoForm.get('cod_equipo')?.errors?.['required']">Debe ingresar el código del equipo.</small>
-        <small *ngIf="equipoForm.get('cod_equipo')?.errors?.['pattern']">Ingrese un código válido (PR####).</small>
+      <div
+        *ngIf="
+          formularioEquipo.get('cod_equipo')?.invalid &&
+          formularioEquipo.get('cod_equipo')?.touched
+        "
+      >
+        <small *ngIf="formularioEquipo.get('cod_equipo')?.errors?.['required']"
+          >Debe ingresar el código del equipo.</small
+        >
+        <small *ngIf="formularioEquipo.get('cod_equipo')?.errors?.['pattern']"
+          >Ingrese un código válido (PR####).</small
+        >
       </div>
-
       <label for="nomEquipo">Nombre del Equipo</label>
       <input
         type="text"
         id="nomEquipo"
+        [(ngModel)]="objEquipo.nom_equipo"
         formControlName="nom_equipo"
         maxlength="30"
         placeholder="Nombre del equipo"
         required
       />
-      <div *ngIf="equipoForm.get('nom_equipo')?.invalid && equipoForm.get('nom_equipo')?.touched">
-        <small *ngIf="equipoForm.get('nom_equipo')?.errors?.['required']">Debe ingresar el nombre del equipo.</small>
-        <small *ngIf="equipoForm.get('nom_equipo')?.errors?.['minlength']">Debe contener al menos 4 caracteres.</small>
+      <div
+        *ngIf="
+          formularioEquipo.get('nom_equipo')?.invalid &&
+          formularioEquipo.get('nom_equipo')?.touched
+        "
+      >
+        <small *ngIf="formularioEquipo.get('nom_equipo')?.errors?.['required']"
+          >Debe ingresar el nombre del equipo.</small
+        >
+        <small *ngIf="formularioEquipo.get('nom_equipo')?.errors?.['minlength']"
+          >Debe contener al menos 4 caracteres.</small
+        >
       </div>
 
       <label for="fechaMantenimiento">Fecha de Mantenimiento</label>
       <input
         type="date"
+        [(ngModel)]="objEquipo.fecha_mantenimiento"
         id="fechaMantenimiento"
         formControlName="fecha_mantenimiento"
         required
       />
-      <div *ngIf="equipoForm.get('fecha_mantenimiento')?.invalid && equipoForm.get('fecha_mantenimiento')?.touched">
-        <small *ngIf="equipoForm.get('fecha_mantenimiento')?.errors?.['required']">Debe ingresar una fecha de mantenimiento.</small>
-        <small *ngIf="equipoForm.get('fecha_mantenimiento')?.errors?.['invalidDate']">Debe ingresar una fecha válida mayor a hoy.</small>
+      <div
+        *ngIf="
+          formularioEquipo.get('fecha_mantenimiento')?.invalid &&
+          formularioEquipo.get('fecha_mantenimiento')?.touched
+        "
+      >
+        <small
+          *ngIf="formularioEquipo.get('fecha_mantenimiento')?.errors?.['required']"
+          >Debe ingresar una fecha de mantenimiento.</small
+        >
+        <small
+          *ngIf="formularioEquipo.get('fecha_mantenimiento')?.errors?.['invalidDate']"
+          >Debe ingresar una fecha válida mayor a hoy.</small
+        >
       </div>
 
-      <button type="submit" [disabled]="equipoForm.invalid">Agregar Equipo</button>
+      <button
+        type="submit"
+        [disabled]="formularioEquipo.invalid"
+        (click)="registra()"
+      >
+        Agregar Equipo
+      </button>
     </form>
   </section>
 </main>
