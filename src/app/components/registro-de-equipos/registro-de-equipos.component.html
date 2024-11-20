@@ -9,34 +9,48 @@
 <main>
   <section class="form-section">
     <h2>Crear Equipo</h2>
-    <form id="createEquipoForm">
+    <form [formGroup]="equipoForm" (ngSubmit)="onSubmit()">
       <label for="codEquipo">Código de Equipo</label>
       <input
         type="text"
         id="codEquipo"
-        name="codEquipo"
+        formControlName="cod_equipo"
         maxlength="6"
+        placeholder="Ingrese código del equipo"
         required
       />
+      <div *ngIf="equipoForm.get('cod_equipo')?.invalid && equipoForm.get('cod_equipo')?.touched">
+        <small *ngIf="equipoForm.get('cod_equipo')?.errors?.['required']">Debe ingresar el código del equipo.</small>
+        <small *ngIf="equipoForm.get('cod_equipo')?.errors?.['pattern']">Ingrese un código válido (PR####).</small>
+      </div>
 
       <label for="nomEquipo">Nombre del Equipo</label>
       <input
         type="text"
         id="nomEquipo"
-        name="nomEquipo"
+        formControlName="nom_equipo"
         maxlength="30"
+        placeholder="Nombre del equipo"
         required
       />
+      <div *ngIf="equipoForm.get('nom_equipo')?.invalid && equipoForm.get('nom_equipo')?.touched">
+        <small *ngIf="equipoForm.get('nom_equipo')?.errors?.['required']">Debe ingresar el nombre del equipo.</small>
+        <small *ngIf="equipoForm.get('nom_equipo')?.errors?.['minlength']">Debe contener al menos 4 caracteres.</small>
+      </div>
 
       <label for="fechaMantenimiento">Fecha de Mantenimiento</label>
       <input
         type="date"
         id="fechaMantenimiento"
-        name="fechaMantenimiento"
+        formControlName="fecha_mantenimiento"
         required
       />
+      <div *ngIf="equipoForm.get('fecha_mantenimiento')?.invalid && equipoForm.get('fecha_mantenimiento')?.touched">
+        <small *ngIf="equipoForm.get('fecha_mantenimiento')?.errors?.['required']">Debe ingresar una fecha de mantenimiento.</small>
+        <small *ngIf="equipoForm.get('fecha_mantenimiento')?.errors?.['invalidDate']">Debe ingresar una fecha válida mayor a hoy.</small>
+      </div>
 
-      <button type="submit">Agregar Equipo</button>
+      <button type="submit" [disabled]="equipoForm.invalid">Agregar Equipo</button>
     </form>
   </section>
 </main>

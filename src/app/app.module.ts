@@ -7,6 +7,8 @@ import { RegistroDeEquiposEmpresaComponent } from './components/registro-de-equi
 import { PaginaInicioComponent } from './components/pagina-inicio/pagina-inicio.component';
 import { RegistroDeEquiposComponent } from './components/registro-de-equipos/registro-de-equipos.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideAnimationsAsync()
