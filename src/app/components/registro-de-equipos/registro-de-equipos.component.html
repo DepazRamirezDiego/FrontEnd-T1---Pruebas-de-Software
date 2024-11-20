@@ -1,1 +1,45 @@
-<p>registro-de-equipos works!</p>
+<header>
+  <nav>
+    <div class="logo">Registro de Equipos</div>
+    <ul class="nav-links">
+      <li><a routerLink="/">Inicio</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <section class="form-section">
+    <h2>Crear Equipo</h2>
+    <form id="createEquipoForm">
+      <label for="codEquipo">Código de Equipo</label>
+      <input
+        type="text"
+        id="codEquipo"
+        name="codEquipo"
+        maxlength="6"
+        required
+      />
+
+      <label for="nomEquipo">Nombre del Equipo</label>
+      <input
+        type="text"
+        id="nomEquipo"
+        name="nomEquipo"
+        maxlength="30"
+        required
+      />
+
+      <label for="fechaMantenimiento">Fecha de Mantenimiento</label>
+      <input
+        type="date"
+        id="fechaMantenimiento"
+        name="fechaMantenimiento"
+        required
+      />
+
+      <button type="submit">Agregar Equipo</button>
+    </form>
+  </section>
+</main>
+<footer>
+  <p>&copy; 2024 Gestión de Equipos</p>
+</footer>
